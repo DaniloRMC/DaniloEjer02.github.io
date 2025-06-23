@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Simple</title>
+    <style>
+        input, button {
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="resultado" readonly>
+    <br>
+    <button onclick="agregarNumero(1)">1</button>
+    <button onclick="agregarNumero(2)">2</button>
+    <button onclick="agregarNumero(3)">3</button>
+    <button onclick="operar('+')">+</button>
+    <br>
+    <button onclick="agregarNumero(4)">4</button>
+    <button onclick="agregarNumero(5)">5</button>
+    <button onclick="agregarNumero(6)">6</button>
+    <button onclick="operar('-')">-</button>
+    <br>
+    <button onclick="agregarNumero(7)">7</button>
+    <button onclick="agregarNumero(8)">8</button>
+    <button onclick="agregarNumero(9)">9</button>
+    <button onclick="operar('*')">*</button>
+    <br>
+    <button onclick="calcular()">=</button>
+    <button onclick="limpiar()">C</button>
+    <button onclick="agregarNumero(0)">0</button>
+    <button onclick="operar('/')">/</button>
+
+    <script>
+        let operacion = '';
+        let valor1 = 0;
+        
+        function agregarNumero(num) {
+            document.getElementById('resultado').value += num;
+        }
+        
+        function operar(op) {
+            valor1 = parseFloat(document.getElementById('resultado').value);
+            operacion = op;
+            document.getElementById('resultado').value = '';
+        }
+        
+        function calcular() {
+            let valor2 = parseFloat(document.getElementById('resultado').value);
+            let resultado;
+            switch (operacion) {
+                case '+':
+                    resultado = valor1 + valor2;
+                    break;
+                case '-':
+                    resultado = valor1 - valor2;
+                    break;
+                case '*':
+                    resultado = valor1 * valor2;
+                    break;
+                case '/':
+                    resultado = valor1 / valor2;
+                    break;
+            }
+            document.getElementById('resultado').value = resultado;
+        }
+
+        function limpiar() {
+            document.getElementById('resultado').value = '';
+            operacion = '';
+            valor1 = 0;
+        }
+    </script>
+</body>
+</html>
